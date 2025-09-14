@@ -30,7 +30,7 @@ public class ContactController {
 	}
 
 	@RequestMapping(value = "/formSubmit", method = POST)
-	public String saveMessage(@Valid@ModelAttribute("contact") Contact contact,Errors errors) {
+	public String saveMessage(@Valid @ModelAttribute("contact") Contact contact,Errors errors) {
 		if (errors.hasErrors()) {
 			System.out.println("Validation failed: " + errors.getAllErrors());
 			return "contact.html";
