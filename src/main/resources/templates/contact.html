@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,15 +17,16 @@
       <a href="pricing.html">Pricing</a>
       <a href="trainers.html">Trainers</a>
       <a href="contact.html" class="active">Contact</a>
+      <a href="login.html">Login</a>
     </nav>
   </header>
 
   <section class="contact container">
     <h2>Contact Us</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" rows="4" required></textarea>
+    <form th:action="@{/formSubmit}" method="post" th:object="${contact}">
+      <input type="text" th:field="*{name}" placeholder="Your Name">
+      <input type="email"  th:field="*{email}" placeholder="Your Email" >
+      <input type="text"  th:field="*{message}"placeholder="Your Message" rows="4" >
       <button type="submit">Send Message</button>
     </form>
   </section>
