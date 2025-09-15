@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FitLife - Login</title>
+  <title>FitLife - Register</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <!-- Header -->
   <header>
     <div class="logo">FitLife</div>
     <nav>
@@ -17,25 +18,34 @@
       <a href="pricing.html">Pricing</a>
       <a href="trainers.html">Trainers</a>
       <a href="contact.html">Contact</a>
-      <a href="login.html" class="active">Login</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="active">Register</a>
     </nav>
   </header>
 
   <section class="login-section">
     <div class="login-card">
-      <h2>Welcome Back</h2>
-      <p>Login to continue your fitness journey</p>
-      <form th:action="@{/login}" method="post">
+      <h2>Create Account</h2>
+      <p>Join FitLife and start your fitness journey</p>
+
+      <form th:action="@{/createUser}" th:object="${person}" method="post">
+
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" name="username" placeholder="Enter your email" required>
+          <input type="email" id="email" th:field="*{email}" placeholder="Enter your email" required>
         </div>
+
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" name="password" placeholder="Enter your password" required>
+          <input type="password" id="password" th:field="*{pwd}" placeholder="Enter your password" required>
         </div>
-        <button type="submit">Login</button>
-        <p class="signup-link">Don’t have an account? <a  th:href="@{/register}">Sign up</a></p>
+
+        <button type="submit" th:href="@{/createUser}">Sign Up</button>
+
+        <p class="signup-link">Already have an account? 
+          <a th:href="@{/login}">Login</a>
+        </p>
+
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
       </form>
     </div>
