@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>FitLife - Dashboard</title>
+<link rel="stylesheet" href="/style.css">
+<style>
+.dashboard-container {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 20px;
+	padding: 20px;
+}
+
+.card {
+	background: #fff;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+	margin-bottom: 15px;
+}
+
+.goals-list {
+	list-style: none;
+	padding: 0;
+}
+
+.goals-list li {
+	background: #f9f9f9;
+	margin-bottom: 10px;
+	padding: 10px;
+	border-left: 5px solid #4caf50;
+	border-radius: 5px;
+}
+</style>
+</head>
+<body>
+	<header>
+		<div class="logo">FitLife</div>
+		<nav>
+			<a th:href="@{/dashboard}" class="active">Dashboard</a> <a
+				th:href="@{/logout}">Logout</a>
+		</nav>
+	</header>
+
+	<section class="dashboard-section">
+		<h2 style="text-align: center;">
+			Welcome, <span th:text="${username}">User</span> 👋
+		</h2>
+		<div class="dashboard-container">
+
+			<div class="card">
+				<h3>Profile Summary</h3>
+				<p>
+					<b>Name:</b> <span th:text="${username}"></span>
+				</p>
+				<p>
+					<b>Email:</b> <span th:text="${email}"></span>
+				</p>
+			</div>
+			
+
+			<div class="card">
+				<h3>Daily Nutrition Plan</h3>
+				<ul>
+					<li>🍳 Breakfast: Oats with milk + fruits</li>
+					<li>🥗 Lunch: Grilled chicken + salad</li>
+					<li>🍎 Snacks: Nuts + smoothie</li>
+					<li>🍲 Dinner: Brown rice + veggies + lentils</li>
+				</ul>
+				<p style="margin-top: 10px; color: gray;">(Later, this will be
+					dynamically generated using Spring AI + Gemini API)</p>
+			</div>
+
+			<!-- Health Goals -->
+			<div class="card" style="grid-column: span 2;">
+				<h3>Health Goals 🌱</h3>
+				<ul class="goals-list">
+					<li>🚶 Walk at least 8,000 steps daily</li>
+					<li>💧 Drink 3 liters of water</li>
+					<li>🛌 Get 7–8 hours of quality sleep</li>
+					<li>🥦 Include 5 servings of fruits & veggies</li>
+					<li>🧘 Practice mindfulness or meditation 10 min/day</li>
+				</ul>
+			</div>
+
+		</div>
+	</section>
+
+	<footer>
+		<p>&copy; 2025 FitLife. All Rights Reserved.</p>
+	</footer>
+</body>
+</html>

@@ -16,8 +16,9 @@ public class SecurityConfig {
 
 		http.authorizeHttpRequests((requests) -> requests.requestMatchers("/**").permitAll()
 				.requestMatchers("style.css").permitAll()
+				.requestMatchers("/dashboard").authenticated()
 				.requestMatchers("/contact","/home","/login","/register").permitAll().requestMatchers("/formSubmit").permitAll())
-				.formLogin(loginConfigurer -> loginConfigurer.loginPage("/login").defaultSuccessUrl("/contact")
+				.formLogin(loginConfigurer -> loginConfigurer.loginPage("/login").defaultSuccessUrl("/dashboard")
 						.failureUrl("/login?error=true").permitAll())
 				.httpBasic(Customizer.withDefaults());
 		return http.build();
