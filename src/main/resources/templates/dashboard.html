@@ -60,34 +60,44 @@
 				<p>
 					<b>Email:</b> <span th:text="${email}"></span>
 				</p>
+				<a href="/dashboard/updateDetails" class="btn">Update Details</a>
 			</div>
-			
 
-			<div class="card">
-				<h3>Daily Nutrition Plan</h3>
+			<section class="goals-section">
+				<h2>Your Health Goals</h2>
+				<form class="goal-form" th:action="@{/goals}" method="post"
+					th:object="${goal}">
+					<input type="text" th:field="*{title}"
+						placeholder="Enter goal title" required />
+					<textarea th:field="*{description}"
+						placeholder="Describe your goal"></textarea>
+					<button type="submit">Add Goal</button>
+				</form>
+
 				<ul>
-					<li>🍳 Breakfast: Oats with milk + fruits</li>
-					<li>🥗 Lunch: Grilled chicken + salad</li>
-					<li>🍎 Snacks: Nuts + smoothie</li>
-					<li>🍲 Dinner: Brown rice + veggies + lentils</li>
+					<li th:each="g : ${goals}"><strong th:text="${g.title}"></strong>
+						- <span th:text="${g.description}"></span></li>
 				</ul>
-				<p style="margin-top: 10px; color: gray;">(Later, this will be
-					dynamically generated using Spring AI + Gemini API)</p>
-			</div>
-
-			<!-- Health Goals -->
-			<div class="card" style="grid-column: span 2;">
-				<h3>Health Goals 🌱</h3>
-				<ul class="goals-list">
-					<li>🚶 Walk at least 8,000 steps daily</li>
-					<li>💧 Drink 3 liters of water</li>
-					<li>🛌 Get 7–8 hours of quality sleep</li>
-					<li>🥦 Include 5 servings of fruits & veggies</li>
-					<li>🧘 Practice mindfulness or meditation 10 min/day</li>
-				</ul>
-			</div>
+			</section>
 
 		</div>
+		<div class="card">
+			<h3>Daily Nutrition Plan</h3>
+			<ul>
+				<li>🍳 Breakfast: Oats with milk + fruits</li>
+				<li>🥗 Lunch: Grilled chicken + salad</li>
+				<li>🍎 Snacks: Nuts + smoothie</li>
+				<li>🍲 Dinner: Brown rice + veggies + lentils</li>
+			</ul>
+			<p style="margin-top: 10px; color: gray;">(Later, this will be
+				dynamically generated using Spring AI + Gemini API)</p>
+		</div>
+
+
+
+
+
+
 	</section>
 
 	<footer>

@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.parinitha.fit.model.Goal;
 import com.parinitha.fit.model.Person;
+import com.parinitha.fit.repository.GoalRepository;
 import com.parinitha.fit.repository.PersonRepository;
 import com.parinitha.fit.service.GoalService;
 import com.parinitha.fit.service.NutritionService;
@@ -27,22 +29,26 @@ public class DashboardController {
 	@Autowired
 	private GoalService goalService;
 	
+	@Autowired
+	private GoalRepository goalRepository;
+	
 //	@Autowired
 //    private NutritionService nutritionService;
 
 	
 	@GetMapping("/dashboard")
-	public String dashboard(Authentication authentication, Model model) {
-	    String email = authentication.getName();
+	public String dashboard(Model model, Principal principal) {
+	    String email = principal.getName();
 	    Person person = personRepository.findByEmail(email);
+	    model.addAttribute("goal", new Goal());
+	    List<Goal> goals = goalRepository.findByPerson(person);
+	    model.addAttribute("goals", goals);
+	    model.addAttribute("username", person.getName());
+	    model.addAttribute("email", person.getEmail());
 
-	    if (person != null) {
-	        model.addAttribute("username", person.getName());
-	        model.addAttribute("email", person.getEmail());
-	        model.addAttribute("goal", "Stay Fit");
-	    }
 	    return "dashboard";
 	}
+
 	
 	
 	@GetMapping("/dashboard/updateDetails")
@@ -50,7 +56,7 @@ public class DashboardController {
 	    String email = authentication.getName();
 	    Person person = personRepository.findByEmail(email);
 	    model.addAttribute("person", person);
-	    return "update-details";
+	    return "updateDetails";
 	}
 
 	@PostMapping("/dashboard/updateDetails")
@@ -81,10 +87,17 @@ public class DashboardController {
 //        return "dashboard";
 //    }
 //
-    @PostMapping("/goals")
-    public String addGoal(@ModelAttribute Goal goal, Principal principal) {
-        // later we’ll fetch personId from logged-in email
-        goalService.saveGoal(1L, goal);
-        return "redirect:/dashboard";
-    }
+	@PostMapping("/goals")
+	public String addGoal(@ModelAttribute Goal goal, Principal principal) {
+	    String email = principal.getName();
+	    Person person = personRepository.findByEmail(email);
+
+	    if (person != null) {
+	        goal.setPerson(person); 
+	        goalRepository.save(goal);
+	    }
+
+	    return "redirect:/dashboard";
+	}
+
 }
