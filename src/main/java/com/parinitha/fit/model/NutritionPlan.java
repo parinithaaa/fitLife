@@ -1,17 +1,20 @@
 package com.parinitha.fit.model;
 
 import jakarta.persistence.*;
+import lombok.Setter;
 
 @Entity
 public class NutritionPlan {
-    @Id
-    @GeneratedValue
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String dietChart;  // simple string for now
+    private String mealType;   
+    private String description;
 
-    // ✅ OneToOne
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "person_id")
+    @Setter
     private Person person;
 }
+
