@@ -396,3 +396,155 @@ footer {
   border-radius: 6px;
 }
 
+/* ==========================
+   FitLife Error Page Styling
+   ========================== */
+
+.page_404 {
+    padding: 80px 0;
+    background: #fff;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.four_zero_four_bg {
+    background: url('/assets/images/error-bg.png') no-repeat center;
+    height: 300px;
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.four_zero_four_bg h1 {
+    font-size: 100px;
+    font-weight: 700;
+    color: var(--primary-color, #ff5722);
+    margin: 0;
+}
+
+.contant_box_404 {
+    margin-top: -50px;
+}
+
+.contant_box_404 h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.contant_box_404 p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.link_404 {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--primary-color, #ff5722);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.link_404:hover {
+    background: #e64a19;
+    text-decoration: none;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .four_zero_four_bg h1 {
+        font-size: 70px;
+    }
+
+    .contant_box_404 h3 {
+        font-size: 22px;
+    }
+}
+.footer {
+  background: #111;
+  color: #eee;
+  padding: 50px 20px 20px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.footer-col h3, .footer-col h2 {
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+  color: #ff5722; /* primary fitness accent */
+}
+
+.subscribe-form {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.subscribe-form input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 30px 0 0 30px;
+}
+
+.subscribe-form button {
+  padding: 10px 20px;
+  border: none;
+  background: #ff5722;
+  color: #fff;
+  border-radius: 0 30px 30px 0;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.subscribe-form button:hover {
+  background: #e64a19;
+}
+
+.socials a {
+  color: #ccc;
+  margin-right: 10px;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.socials a:hover {
+  color: #ff5722;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  border-top: 1px solid #333;
+  padding-top: 15px;
+  font-size: 14px;
+  color: #aaa;
+}
+

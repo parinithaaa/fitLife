@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+  <th:block th:fragment="footer">
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          
+          <div class="footer-col">
+            <h2 class="logo">FitLife</h2>
+            <p>Your ultimate fitness companion. Track your workouts, stay on top of your nutrition, and achieve your health goals with FitLife.</p>
+          </div>
+
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a th:href="@{/home}">Home</a></li>
+              <li><a th:href="@{/programs}">Programs</a></li>
+              <li><a th:href="@{/pricing}">Pricing</a></li>
+              <li><a th:href="@{/trainers}">Trainers</a></li>
+              <li><a th:href="@{/contact}">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Resources</h3>
+            <ul>
+              <li><a th:href="@{/blog}">Blog</a></li>
+              <li><a th:href="@{/about}">About Us</a></li>
+              <li><a th:href="@{/privacy}">Privacy Policy</a></li>
+              <li><a th:href="@{/terms}">Terms & Conditions</a></li>
+              <li><a th:href="@{/support}">Support</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Stay Connected</h3>
+            <form action="#" method="post" class="subscribe-form">
+              <input type="email" name="email" placeholder="Your email" required>
+              <button type="submit">Subscribe</button>
+            </form>
+            <div class="socials">
+              <a href="#"><span class="fa fa-facebook"></span></a>
+              <a href="#"><span class="fa fa-instagram"></span></a>
+              <a href="#"><span class="fa fa-twitter"></span></a>
+              <a href="#"><span class="fa fa-youtube"></span></a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 FitLife. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </th:block>
+</body>
+</html>
