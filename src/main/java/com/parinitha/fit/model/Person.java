@@ -1,7 +1,5 @@
 package com.parinitha.fit.model;
 
-
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,41 +17,35 @@ import lombok.Data;
 @Entity
 @Data
 public class Person {
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Long personId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long personId;
 
-	
-	    private String name;
+	private String name;
 
-	    @NotBlank(message="Email must not be blank")
-	    @Email(message = "Please provide a valid email address" )
-	    private String email;
+	@NotBlank(message = "Email must not be blank")
+	@Email(message = "Please provide a valid email address")
+	private String email;
 
-	    @NotBlank(message="Password must not be blank")
-	    @Size(min=5, message="Password must be at least 5 characters long")
-	    @PasswordValidator
-	    private String pwd;   
+	@NotBlank(message = "Password must not be blank")
+	@Size(min = 5, message = "Password must be at least 5 characters long")
+	@PasswordValidator
+	private String pwd;
 
-	    private String roles; 
+	private String roles;
 
-	    private int age;
-	    private double height; // in cm
-	    private double weight; // in kg
-	    private String gender;
+	private int age;
+	private double height; // in cm
+	private double weight; // in kg
+	private String gender;
 
-	    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
-	    private List<Goal> goals = new ArrayList<>();
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+	private List<Goal> goals = new ArrayList<>();
 
-	    @ManyToMany
-	    @JoinTable(
-	        name = "person_exercise",
-	        joinColumns = @JoinColumn(name = "personId"),
-	        inverseJoinColumns = @JoinColumn(name = "exerciseId")
-	    )
-	    private List<Exercise> exercises = new ArrayList<>();
+	@ManyToMany
+	@JoinTable(name = "person_exercise", joinColumns = @JoinColumn(name = "personId"), inverseJoinColumns = @JoinColumn(name = "exerciseId"))
+	private List<Exercise> exercises = new ArrayList<>();
 
-	    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
-	    private NutritionPlan nutritionPlan;
-
+	@OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
+	private NutritionPlan nutritionPlan;
 }
