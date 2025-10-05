@@ -82,6 +82,39 @@
 
 		</div>
 		<div class="card">
+			<h3>Daily Water Tracker</h3>
+
+			<p>
+				Total Water Consumed Today: <b th:text="${totalWater} + ' ml'">0
+					ml</b>
+			</p>
+
+			<form th:action="@{track/water/add}" method="post" class="mb-3">
+				<div class="input-group">
+					<input type="number" name="amount" class="form-control"
+						placeholder="Enter water in ml" required>
+					<button type="submit" class="btn btn-primary">Add</button>
+				</div>
+			</form>
+
+			<h4>Today's Logs</h4>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Amount (ml)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="log : ${logs}">
+						<td th:text="${log.date}"></td>
+						<td th:text="${log.amount}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="card">
 			<h3>Daily Nutrition Plan</h3>
 			<ul>
 				<li>🍳 Breakfast: Oats with milk + fruits</li>
@@ -89,8 +122,6 @@
 				<li>🍎 Snacks: Nuts + smoothie</li>
 				<li>🍲 Dinner: Brown rice + veggies + lentils</li>
 			</ul>
-			<p style="margin-top: 10px; color: gray;">(Later, this will be
-				dynamically generated using Spring AI + Gemini API)</p>
 		</div>
 
 

@@ -15,10 +15,10 @@ public class SecurityConfig {
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 
 		http.authorizeHttpRequests((requests) -> requests.requestMatchers("/**").permitAll()
-				.requestMatchers("style.css").permitAll()
-				.requestMatchers("/dashboard").authenticated()
-				.requestMatchers("/chat").permitAll()
-				.requestMatchers("/contact","/home","/login","/register").permitAll().requestMatchers("/formSubmit").permitAll())
+				.requestMatchers("style.css").permitAll().requestMatchers("/dashboard/**").authenticated()
+				.requestMatchers("/track/**").authenticated()
+				.requestMatchers("/chat").permitAll().requestMatchers("/contact", "/home", "/login", "/register")
+				.permitAll().requestMatchers("/formSubmit").permitAll())
 				.formLogin(loginConfigurer -> loginConfigurer.loginPage("/login").defaultSuccessUrl("/dashboard")
 						.failureUrl("/login?error=true").permitAll())
 				.httpBasic(Customizer.withDefaults());

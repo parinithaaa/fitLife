@@ -19,6 +19,7 @@ import com.parinitha.fit.repository.GoalRepository;
 import com.parinitha.fit.repository.PersonRepository;
 import com.parinitha.fit.service.GoalService;
 import com.parinitha.fit.service.NutritionService;
+import com.parinitha.fit.service.WaterLogService;
 
 @Controller
 public class DashboardController {
@@ -31,6 +32,11 @@ public class DashboardController {
 	
 	@Autowired
 	private GoalRepository goalRepository;
+
+	@Autowired
+	private WaterLogService waterService;
+	
+	
 	
 //	@Autowired
 //    private NutritionService nutritionService;
@@ -45,7 +51,8 @@ public class DashboardController {
 	    model.addAttribute("goals", goals);
 	    model.addAttribute("username", person.getName());
 	    model.addAttribute("email", person.getEmail());
-
+	    model.addAttribute("totalWater", waterService.getDailyTotal(person));
+        model.addAttribute("logs", waterService.getDailyLogs(person));
 	    return "dashboard";
 	}
 
